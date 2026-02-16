@@ -1102,9 +1102,9 @@
         
         // Simulate progress (replace with real data)
         function updateProgress() {
-    const targetPercentage = 20; // CHANGEZ CE NOMBRE pour modifier le %
-            const progressBar = document.getElementById('progressBar');
-            const progressPercentage = document.getElementById('progressPercentage');
+    const totalWL = 200;        // Nombre total de WL disponibles
+    const WLClaimed = 50;       // Nombre de WL déjà données
+    const targetPercentage = Math.floor((WLClaimed / totalWL) * 100);
             
             let currentPercentage = 0;
             const interval = setInterval(() => {
