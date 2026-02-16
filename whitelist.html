@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cubyboo - Guardians of Color | Whitelist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #FF6EC7;
+            --cyan: #00D9FF;
+            --yellow: #FFD93D;
+            --green: #6BCF7F;
+            --orange: #FF9B50;
+            --purple: #B794F6;
+            --blue: #4D96FF;
+            --red: #FF6B6B;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animated Rainbow Background */
+        .rainbow-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, var(--pink) 0%, transparent 30%),
+                radial-gradient(circle at 80% 20%, var(--cyan) 0%, transparent 35%),
+                radial-gradient(circle at 50% 70%, var(--purple) 0%, transparent 40%),
+                radial-gradient(circle at 10% 80%, var(--blue) 0%, transparent 30%),
+                radial-gradient(circle at 90% 60%, var(--orange) 0%, transparent 35%),
+                #0a0a0f;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        
+        /* Prismatic particles */
+        .prism-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 15s infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(100px) scale(1); opacity: 0; }
+        }
+        
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .logo-image {
+            max-width: 500px;
+            width: 90%;
+            height: auto;
+            filter: drop-shadow(0 0 40px rgba(255, 110, 199, 0.3));
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Fallback text logo if image doesn't load */
+        .logo {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, 
+                var(--pink) 0%, 
+                var(--cyan) 14%, 
+                var(--yellow) 28%, 
+                var(--green) 42%, 
+                var(--orange) 56%, 
+                var(--purple) 70%, 
+                var(--blue) 84%, 
+                var(--pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            animation: rainbow-shift 8s ease infinite;
+            background-size: 200% 200%;
+            margin-bottom: 12px;
+            text-shadow: 0 0 40px rgba(255, 110, 199, 0.3);
+            display: none; /* Hidden by default, shown if image fails */
+        }
+        
+        @keyframes rainbow-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .tagline {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.3rem;
+            color: #b794f6;
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+        
+        /* Main Card */
+        .main-card {
+            background: rgba(20, 20, 30, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 50px;
+            margin: 60px auto;
+            max-width: 600px;
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.7s forwards;
+        }
+        
+        .main-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                var(--pink),
+                var(--cyan),
+                var(--yellow),
+                var(--green),
+                var(--orange),
+                var(--purple),
+                var(--blue),
+                var(--pink)
+            );
+            animation: rotate 8s linear infinite;
+            opacity: 0.1;
+        }
+        
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+        
+        .main-card > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Progress Bar */
+        .progress-section {
+            margin-bottom: 40px;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .progress-bar-container {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, 
+                var(--pink) 0%, 
+                var(--orange) 25%, 
+                var(--yellow) 50%, 
+                var(--green) 75%, 
+                var(--cyan) 100%);
+            border-radius: 20px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px rgba(255, 110, 199, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.4), 
+                transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            100% { left: 100%; }
+        }
+        
+        .progress-percentage {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Steps */
+        .steps {
+            margin-bottom: 40px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateX(8px);
+        }
+        
+        .step-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-family: 'Fredoka', sans-serif;
+            margin-right: 16px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(255, 110, 199, 0.4);
+        }
+        
+        .step-content h3 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+        
+        .step-content p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .step-content a {
+            color: var(--cyan);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .step-content a:hover {
+            color: var(--pink);
+        }
+        
+        .step.completed .step-number {
+            background: linear-gradient(135deg, var(--green), var(--cyan));
+        }
+        
+        .step.completed::after {
+            content: '✓';
+            margin-left: auto;
+            color: var(--green);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        /* Form */
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--cyan);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(0, 217, 255, 0.1);
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 18px 32px;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            border: none;
+            border-radius: 16px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Fredoka', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 24px rgba(255, 110, 199, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .submit-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(255, 110, 199, 0.6);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 32px;
+            background: linear-gradient(135deg, rgba(107, 207, 127, 0.2), rgba(0, 217, 255, 0.2));
+            border-radius: 20px;
+            border: 2px solid rgba(107, 207, 127, 0.4);
+            margin-top: 24px;
+        }
+        
+        .success-message.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        .success-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+        
+        .success-message h3 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--green);
+        }
+        
+        .success-message p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        /* Verification Warning */
+        .verification-warning {
+            margin: 32px 0;
+            padding: 20px 24px;
+            background: rgba(255, 155, 80, 0.1);
+            border: 2px solid rgba(255, 155, 80, 0.3);
+            border-radius: 16px;
+        }
+        
+        .verification-warning p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .verification-warning strong {
+            color: var(--orange);
+        }
+        
+        /* Oath Modal */
+        .oath-modal {
+            display: none !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .oath-modal.show {
+            display: flex !important;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .oath-content {
+            background: linear-gradient(135deg, rgba(20, 20, 30, 0.95), rgba(30, 30, 50, 0.95));
+            border: 3px solid var(--purple);
+            border-radius: 24px;
+            padding: 24px 32px;
+            max-width: 650px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 0 60px rgba(183, 148, 246, 0.4),
+                        0 20px 80px rgba(0, 0, 0, 0.8);
+            animation: slideUp 0.4s ease;
+        }
+        
+        .oath-cubyboo-header {
+            text-align: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .oath-logo {
+            max-width: 220px;
+            width: 70%;
+            height: auto;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 0 20px rgba(255, 110, 199, 0.3));
+        }
+        
+        .oath-slogan {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.85rem;
+            color: var(--purple);
+            margin: 0;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .oath-header {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        
+        .oath-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--purple), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .oath-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+        
+        .oath-scroll {
+            padding: 14px 18px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            margin-bottom: 14px;
+        }
+        
+        .oath-text {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+            font-size: 0.85rem;
+            text-align: center;
+            white-space: pre-line;
+        }
+        
+        .oath-signature {
+            color: var(--cyan);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .oath-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .oath-checkbox:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+        
+        .oath-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--purple);
+        }
+        
+        .oath-checkbox label {
+            color: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            font-size: 0.85rem;
+            flex: 1;
+            line-height: 1.3;
+        }
+        
+        .oath-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .oath-btn {
+            flex: 1;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .oath-btn-accept {
+            background: linear-gradient(135deg, var(--purple), var(--cyan));
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(183, 148, 246, 0.4);
+        }
+        
+        .oath-btn-accept:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(183, 148, 246, 0.6);
+        }
+        
+        .oath-btn-accept:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .oath-btn-decline {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .oath-btn-decline:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 24px 40px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .social-link {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            font-family: 'Fredoka', sans-serif;
+        }
+        
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--cyan);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 217, 255, 0.3);
+        }
+        
+        .social-link.soon::before {
+            content: 'SOON';
+            position: absolute;
+            top: -32px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            background: var(--orange);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-family: 'Fredoka', sans-serif;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .social-link.soon::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--orange);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link.soon:hover::before {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+        
+        .social-link.soon:hover::after {
+            opacity: 1;
+        }
+        
+        .blockchain-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            margin: 24px 0;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .blockchain-badge:hover {
+            border-color: var(--cyan);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .blockchain-logo {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-image {
+                max-width: 300px;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .main-card {
+                padding: 40px 30px;
+                margin: 40px auto;
+            }
+            
+            .card-title {
+                font-size: 1.6rem;
+            }
+            
+            .step {
+                padding: 16px;
+            }
+            
+            .step:hover {
+                transform: none;
+            }
+            
+            .oath-content {
+                padding: 20px 16px;
+                max-width: 95%;
+            }
+            
+            .oath-logo {
+                max-width: 180px;
+            }
+            
+            .oath-slogan {
+                font-size: 0.75rem;
+            }
+            
+            .oath-title {
+                font-size: 1.3rem;
+            }
+            
+            .oath-subtitle {
+                font-size: 0.75rem;
+            }
+            
+            .oath-scroll {
+                padding: 12px;
+            }
+            
+            .oath-text {
+                font-size: 0.8rem;
+                line-height: 1.35;
+            }
+            
+            .oath-checkbox label {
+                font-size: 0.8rem;
+            }
+            
+            .oath-btn {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+            
+            .oath-buttons {
+                flex-direction: column;
+            }
+            
+            .verification-warning {
+                text-align: center;
+            }
+            
+            .social-links {
+                gap: 16px;
+            }
+            
+            .blockchain-badge {
+                font-size: 0.85rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="rainbow-bg"></div>
+    
+    <!-- Prismatic Particles -->
+    <div class="prism-particles" id="particles"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo-container">
+                <img src="cubyboo-logo.png" alt="CUBYBOO" class="logo-image" id="logoImage" onerror="this.style.display='none'; document.getElementById('logoText').style.display='block';">
+                <h1 class="logo" id="logoText">CUBYBOO</h1>
+            </div>
+            <p class="tagline">✨ What we cherish exists. ✨</p>
+            <p class="subtitle">2,222 NFTs · 22 Batches · 4 Phases</p>
+        </header>
+        
+        <!-- Main Card -->
+        <div class="main-card">
+            <h2 class="card-title">Join the Guardians</h2>
+            <p class="card-subtitle">
+                Become a Guardian and protect what truly matters. Complete the missions below to secure your Whitelist spot.
+            </p>
+            
+            <!-- Progress Bar -->
+            <div class="progress-section">
+                <div class="progress-label">
+                    <span>Whitelist spots claimed</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+                </div>
+                <div class="progress-percentage" id="progressPercentage">0%</div>
+            </div>
+            
+            <!-- Steps -->
+            <div class="steps">
+                <div class="step" id="step1">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Follow @Cubyboo_NFT on 𝕏</h3>
+                        <p>Join our community on Twitter to stay updated</p>
+                        <a href="https://twitter.com/Cubyboo_NFT" target="_blank" rel="noopener">→ Follow now</a>
+                    </div>
+                </div>
+                
+                <div class="step" id="step2">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Like & Repost the pinned tweet</h3>
+                        <p>Help us spread the Guardians' mission</p>
+                        <a href="https://twitter.com/Cubyboo_NFT" target="_blank" rel="noopener">→ View tweet</a>
+                    </div>
+                </div>
+                
+                <div class="step" id="step3">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Tag 3 friends (Bonus WL priority!) 🎁</h3>
+                        <p>Mention 3 friends in the pinned tweet for bonus whitelist priority</p>
+                        <a href="https://twitter.com/Cubyboo_NFT" target="_blank" rel="noopener">→ Tag friends</a>
+                    </div>
+                </div>
+                
+                <div class="step" id="step4">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Sign the Guardian's Oath</h3>
+                        <p>Accept your sacred duty as a Guardian</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Verification Warning -->
+            <div class="verification-warning">
+                <p><strong>All actions will be manually verified.</strong> Incomplete or fraudulent submissions will be disqualified. Complete all steps truthfully to secure your whitelist spot.</p>
+            </div>
+            
+            <!-- Form -->
+            <form id="whitelistForm">
+                <div class="form-group">
+                    <label class="form-label" for="twitter">
+                        Twitter Handle <span style="color: var(--pink);">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="twitter" 
+                        name="twitter" 
+                        class="form-input" 
+                        placeholder="@yourhandle"
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="friends">
+                        Tagged Friends (optional, for bonus priority)
+                    </label>
+                    <input 
+                        type="text" 
+                        id="friends" 
+                        name="friends" 
+                        class="form-input" 
+                        placeholder="@friend1 @friend2 @friend3"
+                    >
+                    <small style="color: rgba(255, 255, 255, 0.5); font-size: 0.85rem; display: block; margin-top: 4px;">
+                        Enter the Twitter handles you tagged for bonus WL priority
+                    </small>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="wallet">
+                        Abstract Wallet <span style="color: var(--pink);">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="wallet" 
+                        name="wallet" 
+                        class="form-input" 
+                        placeholder="0x..."
+                        required
+                        pattern="^0x[a-fA-F0-9]{40}$"
+                    >
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span>🐻 Join the Guardians</span>
+                </button>
+            </form>
+            
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">✨</div>
+                <h3>Welcome, Guardian!</h3>
+                <p>
+                    Your Whitelist request has been successfully registered.<br>
+                    You'll receive a confirmation once validated.<br><br>
+                    <strong>The Prismatic Sanctuary awaits you 🌈</strong>
+                </p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer>
+            <div class="social-links">
+                <a href="https://twitter.com/Cubyboo_NFT" class="social-link" target="_blank" rel="noopener" title="Twitter">
+                    𝕏
+                </a>
+                <a href="#" class="social-link soon" title="Discord - Coming Soon" onclick="return false;">
+                    💬
+                </a>
+                <a href="#" class="social-link soon" title="OpenSea - Coming Soon" onclick="return false;">
+                    🌊
+                </a>
+            </div>
+            
+            <div class="blockchain-badge">
+                <img src="abstract-logo.png" alt="Abstract" class="blockchain-logo" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
+                <span>Abstract</span>
+            </div>
+            
+            <p style="margin-top: 20px;">© 2026 Cubyboo · What we cherish exists.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Create prismatic particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const colors = ['#FF6EC7', '#00D9FF', '#FFD93D', '#6BCF7F', '#FF9B50', '#B794F6', '#4D96FF'];
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        
+        // Simulate progress (replace with real data)
+        function updateProgress() {
+            const targetPercentage = Math.floor(Math.random() * 60) + 20; // Random between 20-80%
+            const progressBar = document.getElementById('progressBar');
+            const progressPercentage = document.getElementById('progressPercentage');
+            
+            let currentPercentage = 0;
+            const interval = setInterval(() => {
+                if (currentPercentage >= targetPercentage) {
+                    clearInterval(interval);
+                    return;
+                }
+                currentPercentage++;
+                progressBar.style.width = currentPercentage + '%';
+                progressPercentage.textContent = currentPercentage + '%';
+            }, 20);
+        }
+        
+        // Google Sheets Web App URL (replace with your deployed Apps Script URL)
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+        
+        // Check if oath was signed (from index.html landing page)
+        window.addEventListener('load', function() {
+            const oathSigned = localStorage.getItem('cubyboo_oath_signed') === 'true';
+            
+            // PROTECTION: If oath not signed, redirect to landing page
+            if (!oathSigned) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // Enable wallet input
+            const walletInput = document.getElementById('wallet');
+            walletInput.readOnly = false;
+            walletInput.style.opacity = '1';
+            walletInput.style.cursor = 'text';
+            
+            // Mark step 4 as completed
+            document.getElementById('step4').classList.add('completed');
+            
+            // Check if already submitted whitelist
+            if (localStorage.getItem('cubyboo_wl_submitted') === 'true') {
+                document.getElementById('whitelistForm').style.display = 'none';
+                document.getElementById('successMessage').classList.add('show');
+                document.getElementById('step1').classList.add('completed');
+                document.getElementById('step2').classList.add('completed');
+                document.getElementById('step3').classList.add('completed');
+                document.getElementById('step4').classList.add('completed');
+            }
+        });
+        
+        // Form submission
+        document.getElementById('whitelistForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const twitter = document.getElementById('twitter').value;
+            const wallet = document.getElementById('wallet').value;
+            const friends = document.getElementById('friends').value;
+            const submitBtn = document.getElementById('submitBtn');
+            
+            // Validate wallet format
+            if (!wallet.match(/^0x[a-fA-F0-9]{40}$/)) {
+                alert('❌ Invalid wallet format. Must start with 0x and contain 40 hexadecimal characters.');
+                return;
+            }
+            
+            // Validate Twitter handle
+            if (!twitter.startsWith('@')) {
+                alert('❌ Twitter handle must start with @');
+                return;
+            }
+            
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>⏳ Submitting...</span>';
+            
+            // Send to Google Sheets
+            try {
+                const formData = new FormData();
+                formData.append('twitter', twitter);
+                formData.append('wallet', wallet);
+                formData.append('friends', friends);
+                formData.append('oath_signed', 'true');
+                formData.append('timestamp', new Date().toISOString());
+                
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    // Show success message
+                    document.getElementById('whitelistForm').style.display = 'none';
+                    document.getElementById('successMessage').classList.add('show');
+                    
+                    // Mark all steps as completed
+                    document.getElementById('step1').classList.add('completed');
+                    document.getElementById('step2').classList.add('completed');
+                    document.getElementById('step3').classList.add('completed');
+                    document.getElementById('step4').classList.add('completed');
+                    
+                    // Store in localStorage to prevent resubmission
+                    localStorage.setItem('cubyboo_wl_submitted', 'true');
+                    localStorage.setItem('cubyboo_wl_twitter', twitter);
+                } else {
+                    throw new Error(result.message || 'Submission failed');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('❌ An error occurred. Please try again later.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>🐻 Join the Guardians</span>';
+            }
+        });
+        
+        // Initialize
+        createParticles();
+        updateProgress();
+    </script>
+</body>
+</html>
