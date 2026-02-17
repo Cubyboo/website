@@ -1178,9 +1178,11 @@
             
             // Send to Google Sheets
             try {
+                const tweetLink = document.getElementById('tweetLink').value;
                 const formData = new FormData();
                 formData.append('twitter', twitter);
                 formData.append('wallet', wallet);
+                formData.append('tweetLink', tweetLink);
                 formData.append('oath_signed', 'true');
                 formData.append('timestamp', new Date().toISOString());
                 
