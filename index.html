@@ -113,6 +113,21 @@
                 transform: translateY(20px);
             }
         }
+<!-- VIDEO SECTION -->
+<section class="video-section">
+    <div class="video-container">
+        <h2 class="video-title">🎬 Meet the Cubyboo Family</h2>
+        <p class="video-subtitle">Watch our official trailer!</p>
+        <div class="video-player">
+            <video controls preload="metadata" playsinline>
+                <source src="cubyboo-trailer.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="video-cta">
+            <a href="whitelist.html" class="cta-button">🎟️ Join Whitelist Now!</a>
+        </div>
+    </div>
+</section>
         
         /* Main Card */
         .main-card {
@@ -310,6 +325,16 @@
                 flex-direction: column;
             }
         }
+        .video-section{padding:40px 20px;animation:fadeIn 1.2s ease}
+.video-container{background:rgba(255,255,255,0.95);border-radius:30px;padding:40px;box-shadow:0 20px 60px rgba(0,0,0,0.3);text-align:center;margin-bottom:40px}
+.video-title{font-family:'Chewy',cursive;font-size:2.5rem;background:linear-gradient(135deg,#FF6EC7,#9D4EDD);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+.video-subtitle{font-size:1.2rem;color:#666;margin-bottom:30px;font-weight:600}
+.video-player{border-radius:20px;overflow:hidden;box-shadow:0 15px 50px rgba(0,0,0,0.3)}
+.video-player video{width:100%;display:block}
+.video-cta{margin-top:30px}
+.cta-button{display:inline-block;background:linear-gradient(135deg,#00D98C,#00B8FF);color:white;padding:18px 45px;border-radius:50px;text-decoration:none;font-weight:900;font-size:1.3rem;transition:all 0.3s ease}
+.cta-button:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,184,255,0.6)}
+@media (max-width:768px){.video-container{padding:25px}.video-title{font-size:2rem}}
     </style>
 </head>
 <body>
