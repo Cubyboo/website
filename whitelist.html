@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whitelist — Cubyboo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .wl-page{padding:calc(var(--nav-h)+52px) 0 80px;}
+    .wl-header{text-align:center;margin-bottom:48px;}
+    .wl-header__sub{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:8px;}
+    .wl-grid{display:flex;flex-direction:column;gap:20px;}
+    .wl-card{padding:36px 40px;}
+    .card-label{font-family:'Syne',sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+    .card-label::after{content:'';flex:1;height:1px;background:var(--border);}
+    .form-stack{display:flex;flex-direction:column;gap:18px;}
+    @media(max-width:600px){.wl-card{padding:24px 18px;}}
+  </style>
+</head>
+<body>
+<div class="bg-layer"><div class="bg-mesh"></div><div class="bg-grid"></div></div>
+<div class="particles" id="js-particles"></div>
+
+<nav class="navbar scrolled" id="js-navbar">
+  <a href="landing.html" class="nav-logo"><img src="cubyboo-logo.png" alt="Cubyboo"></a>
+  <ul class="nav-links">
+    <li><a href="landing.html#about">About</a></li>
+    <li><a href="landing.html#roadmap">Roadmap</a></li>
+    <li><a href="landing.html#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://twitter.com/Cubyboo_NFT" class="nav-social" target="_blank" rel="noopener">𝕏</a>
+    <a href="landing.html" class="btn btn-ghost" style="font-size:.8rem;padding:8px 18px;">← Accueil</a>
+  </div>
+  <div class="nav-burger" id="js-burger"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-mobile" id="js-mobile-menu">
+  <a href="landing.html">← Accueil</a>
+  <a href="index.html">⚔️ Le Serment</a>
+</div>
+
+<div class="wrapper">
+  <div class="wl-page">
+    <div class="container--sm">
+
+      <div class="wl-header reveal">
+        <span class="eyebrow eyebrow--purple"><span class="eyebrow-dot"></span>Phase 2 — En cours</span>
+        <h1 class="h-lg" style="margin-top:16px;">Join the <span class="grad-text">Guardians</span></h1>
+        <p class="wl-header__sub">2,222 NFTs · 22 Batches · 4 Phases</p>
+      </div>
+
+      <div class="wl-grid">
+
+        <!-- Progress -->
+        <div class="card wl-card reveal" style="padding:24px 32px;">
+          <div class="card-label">Whitelist Progress</div>
+          <div class="progress-wrap">
+            <div class="progress-meta">
+              <span class="progress-label">Spots réclamés cette session</span>
+              <span class="progress-val" id="js-pval">0%</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" id="js-pbar" style="width:0%"></div></div>
+          </div>
+        </div>
+
+        <!-- Steps -->
+        <div class="card wl-card reveal rd-1">
+          <div class="card-label">Missions à compléter</div>
+          <div class="steps-list" id="js-steps">
+            <div class="step-item" id="step1"><div class="step-num">1</div><div class="step-body"><h3>Suis @Cubyboo_NFT sur 𝕏</h3><p>Rejoins notre communauté sur Twitter pour rester informé</p><a href="https://twitter.com/Cubyboo_NFT" target="_blank" rel="noopener">→ Suivre maintenant</a></div></div>
+            <div class="step-item" id="step2"><div class="step-num">2</div><div class="step-body"><h3>Like & Reposte le tweet épinglé</h3><p>Aide-nous à diffuser la mission des Gardiens</p><a href="https://twitter.com/Cubyboo_NFT" target="_blank" rel="noopener">→ Voir le tweet</a></div></div>
+            <div class="step-item" id="step3"><div class="step-num">3</div><div class="step-body"><h3>Tague 3 amis pour une priorité WL bonus 🎁</h3><p>Mentionne 3 amis dans le tweet épinglé, puis colle le lien ci-dessous</p><a href="https://twitter.com/Cubyboo_NFT" target="_blank" rel="noopener">→ Voir le tweet épinglé</a></div></div>
+            <div class="step-item" id="step4"><div class="step-num">4</div><div class="step-body"><h3>Signe le Serment du Gardien</h3><p>Accepte ton devoir sacré en tant que Gardien</p></div></div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="card wl-card reveal rd-2">
+          <div class="card-label">Inscription</div>
+          <div class="notice notice--warning" style="margin-bottom:22px;">
+            <strong>Toutes les actions seront vérifiées manuellement.</strong> Les soumissions incomplètes ou frauduleuses seront disqualifiées.
+          </div>
+          <form id="js-form">
+            <div class="form-stack">
+              <div class="field-group">
+                <label class="field-label" for="twitter">Twitter Handle <span class="req">*</span></label>
+                <input type="text" id="twitter" name="twitter" class="field-input" placeholder="@tonhandle" required>
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="tweetLink">Lien de ton tweet <span class="opt">(optionnel — pour priorité bonus)</span></label>
+                <input type="url" id="tweetLink" name="tweetLink" class="field-input" placeholder="https://twitter.com/tonhandle/status/...">
+                <p class="field-hint">Colle le lien du tweet où tu as tagué 3 amis</p>
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="wallet">Abstract Wallet <span class="req">*</span></label>
+                <input type="text" id="wallet" name="wallet" class="field-input" placeholder="0x..." required pattern="^0x[a-fA-F0-9]{40}$">
+              </div>
+              <button type="submit" class="btn btn-primary btn-full" id="js-submit" style="margin-top:4px;">
+                🐻 Rejoindre les Gardiens
+              </button>
+            </div>
+          </form>
+          <div class="success-box" id="js-success">
+            <div class="success-box__icon">✨</div>
+            <h3 class="success-box__title">Bienvenue, Gardien !</h3>
+            <p class="success-box__text">Ta demande de Whitelist a été enregistrée avec succès.<br><br><strong style="color:var(--green);">Le Sanctuaire Prismatique t'attend 🌈</strong></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="divider" style="margin-bottom:40px;"></div>
+    <div class="container">
+      <ul class="social-list">
+        <li><a href="https://twitter.com/Cubyboo_NFT" class="social-link" target="_blank" rel="noopener">𝕏</a></li>
+        <li><a href="#" class="social-link" data-soon onclick="return false;"><img src="discord-icon.png" alt="Discord"></a></li>
+        <li><a href="#" class="social-link" data-soon onclick="return false;"><img src="opensea-icon.png" alt="OpenSea"></a></li>
+      </ul>
+      <div><span class="chain-badge"><img src="abstract-icon.png" alt="Abstract" onerror="this.style.display='none'"> Abstract</span></div>
+      <p>© 2026 Cubyboo · What we cherish exists.</p>
+    </div>
+  </footer>
+</div>
+
+<!-- Oath Modal -->
+<div class="modal-overlay" id="js-oath-modal">
+  <div class="modal-box" style="text-align:center;">
+    <img src="cubyboo-logo.png" alt="CUBYBOO" style="max-width:200px;width:75%;margin-bottom:16px;filter:drop-shadow(0 0 20px rgba(255,95,186,.3));">
+    <p style="font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);margin-bottom:20px;">✦ What we cherish exists ✦</p>
+    <span class="eyebrow eyebrow--purple" style="margin-bottom:14px;display:inline-flex;">Sacred Ritual</span>
+    <h3 class="h-md grad-text" style="margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em;">The Guardian's Oath</h3>
+    <p style="font-size:.78rem;color:var(--muted);margin-bottom:18px;">Tu dois prononcer le serment avant de rejoindre</p>
+    <div style="padding:16px;background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:16px;">
+      <p style="font-size:.8rem;line-height:1.75;text-align:center;color:rgba(240,240,255,.85);white-space:pre-line;">I, <strong style="color:var(--cyan);">Guardian</strong>,
+acknowledge that what I cherish exists.
+
+I vow to protect the essence entrusted to my Cubyboo,
+To see it. To honor it. To never let it fade.
+
+I do not fight with force, but with presence.
+
+<span style="font-family:'Syne',sans-serif;font-size:.82rem;font-weight:800;letter-spacing:.1em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">WHAT WE CHERISH EXISTS</span></p>
+    </div>
+    <label class="check-row" style="margin-bottom:16px;text-align:left;">
+      <input type="checkbox" id="js-modal-check">
+      <span style="font-size:.83rem;color:var(--muted);line-height:1.4;cursor:pointer;">J'accepte solennellement ce serment et m'engage en tant que Gardien</span>
+    </label>
+    <div style="display:flex;gap:10px;">
+      <button class="btn btn-ghost" onclick="window.location.href='landing.html'" style="flex:1;">← Retour</button>
+      <button class="btn btn-primary" id="js-modal-accept" disabled style="flex:2;">⚔️ Accepter & Entrer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){const el=document.getElementById('js-particles');const colors=['#FF5FBA','#00E5FF','#FFE040','#4DFFA0','#A855F7'];for(let i=0;i<32;i++){const p=document.createElement('div');p.className='particle';const s=Math.random()*4+2;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*22}s;animation-duration:${Math.random()*12+10}s;`;el.appendChild(p);}})();
+document.getElementById('js-burger').addEventListener('click',()=>document.getElementById('js-mobile-menu').classList.toggle('open'));
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+function animProg(){const t=50,tot=200;const pct=Math.floor(t/tot*100);let c=0;const bar=document.getElementById('js-pbar'),val=document.getElementById('js-pval');const iv=setInterval(()=>{if(c>=pct){clearInterval(iv);return;}c++;bar.style.width=c+'%';val.textContent=c+'%';},20);}
+window.addEventListener('load',function(){
+  if(localStorage.getItem('cubyboo_oath_signed')!=='true'){document.getElementById('js-oath-modal').classList.add('is-open');}
+  else{document.getElementById('step4').classList.add('is-done');}
+  if(localStorage.getItem('cubyboo_wl_submitted')==='true'){document.getElementById('js-form').style.display='none';document.getElementById('js-success').classList.add('is-visible');['step1','step2','step3','step4'].forEach(id=>document.getElementById(id).classList.add('is-done'));}
+  animProg();
+});
+document.getElementById('js-modal-check').addEventListener('change',function(){document.getElementById('js-modal-accept').disabled=!this.checked;});
+document.getElementById('js-modal-accept').addEventListener('click',function(){localStorage.setItem('cubyboo_oath_signed','true');document.getElementById('js-oath-modal').classList.remove('is-open');document.getElementById('step4').classList.add('is-done');});
+const SCRIPT='https://script.google.com/macros/s/AKfycbxeflwORN7mzkx5CEx5Ul1vOvxklTQ0oYl1TIs2qa415G2VptyKG2zyBkEWws6zzLfSoA/exec';
+document.getElementById('js-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const tw=document.getElementById('twitter').value;const wa=document.getElementById('wallet').value;const btn=document.getElementById('js-submit');
+  if(!wa.match(/^0x[a-fA-F0-9]{40}$/)){alert('❌ Format wallet invalide. Doit commencer par 0x et contenir 40 caractères hex.');return;}
+  if(!tw.startsWith('@')){alert('❌ Le handle Twitter doit commencer par @');return;}
+  btn.disabled=true;btn.innerHTML='⏳ Envoi en cours…';
+  try{
+    const tl=document.getElementById('tweetLink').value;const fd=new FormData();
+    fd.append('twitter',tw);fd.append('wallet',wa);fd.append('tweetLink',tl);fd.append('oath_signed','true');fd.append('timestamp',new Date().toISOString());
+    const res=await fetch(SCRIPT,{method:'POST',body:fd});const result=await res.json();
+    if(result.status==='success'){document.getElementById('js-form').style.display='none';document.getElementById('js-success').classList.add('is-visible');['step1','step2','step3','step4'].forEach(id=>document.getElementById(id).classList.add('is-done'));localStorage.setItem('cubyboo_wl_submitted','true');localStorage.setItem('cubyboo_wl_twitter',tw);}
+    else throw new Error(result.message||'Échec');
+  }catch(err){console.error(err);alert('❌ Une erreur est survenue. Réessaie plus tard.');btn.disabled=false;btn.innerHTML='🐻 Rejoindre les Gardiens';}
+});
+</script>
+</body>
+</html>

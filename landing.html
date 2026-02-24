@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cubyboo — Guardians of Color</title>
+  <meta name="description" content="2,222 Cubyboo NFTs on Abstract. What we cherish exists.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── HERO ── */
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:calc(var(--nav-h)+60px) 28px 80px;position:relative;}
+    .hero__glow{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;}
+    .hero__glow--pink{width:500px;height:500px;background:rgba(255,95,186,.09);top:50%;left:50%;transform:translate(-50%,-50%);}
+    .hero__glow--cyan{width:400px;height:400px;background:rgba(0,229,255,.07);top:20%;right:10%;}
+    .hero__glow--purp{width:450px;height:450px;background:rgba(168,85,247,.08);bottom:10%;left:5%;}
+    .hero__mascot-wrap{position:relative;display:inline-block;margin-bottom:52px;}
+    .hero__mascot{
+      width:min(300px,68vw);height:min(300px,68vw);border-radius:50%;
+      background:linear-gradient(135deg,rgba(255,95,186,.10),rgba(168,85,247,.10),rgba(0,229,255,.10));
+      border:1px solid rgba(255,255,255,.08);
+      display:flex;align-items:center;justify-content:center;font-size:min(120px,26vw);
+      animation:float 4s ease-in-out infinite;position:relative;z-index:2;backdrop-filter:blur(8px);
+    }
+    /* rings */
+    .hero__ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid;transform:translate(-50%,-50%);pointer-events:none;}
+    .hero__ring--1{width:calc(100% + 36px);height:calc(100% + 36px);border-color:rgba(255,95,186,.28);animation:ringPulse 3.2s ease-in-out infinite;}
+    .hero__ring--2{width:calc(100% + 84px);height:calc(100% + 84px);border-color:rgba(168,85,247,.18);animation:ringPulse 3.2s ease-in-out .75s infinite;}
+    .hero__ring--3{width:calc(100% + 140px);height:calc(100% + 140px);border-color:rgba(0,229,255,.11);animation:ringPulse 3.2s ease-in-out 1.5s infinite;}
+    @keyframes ringPulse{0%,100%{transform:translate(-50%,-50%)scale(1);opacity:1;}50%{transform:translate(-50%,-50%)scale(1.06);opacity:.45;}}
+    /* orbiting sparks */
+    .hero__orbit{position:absolute;top:50%;left:50%;width:calc(100% + 110px);height:calc(100% + 110px);margin-left:calc(-50% - 55px);margin-top:calc(-50% - 55px);animation:rotate 9s linear infinite;pointer-events:none;}
+    .hero__spark{position:absolute;width:9px;height:9px;border-radius:50%;top:0;left:50%;transform:translateX(-50%);box-shadow:0 0 12px 4px currentColor;}
+    .hero__spark--1{color:var(--pink);}
+    .hero__spark--2{top:auto;bottom:0;color:var(--cyan);}
+    .hero__orbit2{animation-duration:14s;animation-direction:reverse;}
+    .hero__spark--3{color:var(--yellow);}
+    .hero__spark--4{top:auto;bottom:0;color:var(--purple);}
+    /* magic dust */
+    .hero__dust{position:absolute;inset:0;pointer-events:none;z-index:3;}
+    .hero__tag{margin-bottom:24px;opacity:0;animation:fadeUp .7s ease .15s forwards;}
+    .hero__title{margin-bottom:22px;opacity:0;animation:fadeUp .7s ease .3s forwards;}
+    .hero__sub{font-size:clamp(1rem,2vw,1.15rem);color:var(--muted);max-width:540px;line-height:1.8;margin:0 auto 40px;opacity:0;animation:fadeUp .7s ease .45s forwards;}
+    .hero__ctas{display:flex;align-items:center;gap:13px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .7s ease .6s forwards;}
+    .hero__stats{display:flex;gap:44px;justify-content:center;flex-wrap:wrap;margin-top:72px;padding-top:52px;border-top:1px solid var(--border);opacity:0;animation:fadeUp .7s ease .8s forwards;width:100%;}
+    .hero__stat{text-align:center;}
+    .hero__stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero__stat-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:4px;}
+    .hero__scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);display:flex;flex-direction:column;align-items:center;gap:9px;animation:fadeIn 1s ease 1.2s both;}
+    .hero__scroll::after{content:'';width:1px;height:30px;background:linear-gradient(var(--bord2),transparent);}
+
+    /* ── ABOUT ── */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;}
+    .about-visual{position:relative;aspect-ratio:1;border-radius:var(--r-xl);}
+    .about-visual__inner{
+      width:100%;aspect-ratio:1;border-radius:var(--r-xl);
+      background:linear-gradient(135deg,rgba(255,95,186,.07),rgba(168,85,247,.09),rgba(0,229,255,.07));
+      border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
+      animation:float 5.5s ease-in-out infinite;position:relative;overflow:hidden;
+    }
+    .about-visual__inner::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,var(--pink),var(--cyan),var(--yellow),var(--purple),var(--pink));animation:rotate 12s linear infinite;opacity:.05;}
+    .about-visual__placeholder{position:relative;z-index:1;font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;padding:28px;}
+    .about-visual__placeholder span{display:block;font-size:3.5rem;margin-bottom:14px;}
+    .about-text{display:flex;flex-direction:column;gap:18px;}
+    .about-text p{font-size:.95rem;color:var(--muted);line-height:1.85;}
+    .about-quote{padding:18px 20px;border-left:2px solid var(--purple);background:rgba(168,85,247,.06);border-radius:0 var(--r-md) var(--r-md) 0;}
+    .about-quote p{font-family:'Syne',sans-serif;font-size:1.02rem;font-weight:600;color:var(--text);font-style:italic;line-height:1.6;}
+    @media(max-width:768px){.about-grid{grid-template-columns:1fr;}.about-visual{max-width:320px;margin:0 auto;}}
+
+    /* ── TRAITS ── */
+    .traits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+    .trait-card{padding:22px 18px;text-align:center;}
+    .trait-icon{font-size:2rem;margin-bottom:10px;display:block;}
+    .trait-name{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;margin-bottom:4px;}
+    .trait-count{font-size:.74rem;color:var(--muted);}
+    .trait-bar-wrap{margin-top:10px;height:4px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden;}
+    .trait-bar{height:100%;border-radius:99px;background:var(--grad);}
+    @media(max-width:580px){.traits-grid{grid-template-columns:repeat(2,1fr);}}
+
+    /* ── ROADMAP ── */
+    .roadmap{position:relative;}
+    .roadmap::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(var(--bg),var(--bord2)15%,var(--bord2)85%,var(--bg));transform:translateX(-50%);}
+    .roadmap-items{display:flex;flex-direction:column;gap:0;}
+    .roadmap-item{display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;gap:0;padding:22px 0;}
+    .roadmap-item:nth-child(odd) .rm-content{grid-column:1;text-align:right;padding-right:38px;}
+    .roadmap-item:nth-child(odd) .rm-empty{grid-column:3;}
+    .roadmap-item:nth-child(even) .rm-content{grid-column:3;text-align:left;padding-left:38px;}
+    .roadmap-item:nth-child(even) .rm-empty{grid-column:1;}
+    .rm-node{grid-column:2;display:flex;flex-direction:column;align-items:center;gap:5px;z-index:2;}
+    .rm-dot{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.05rem;border:2px solid var(--border);background:var(--bg2);transition:all .3s;}
+    .roadmap-item.active .rm-dot{background:var(--grad);border-color:transparent;box-shadow:0 0 28px rgba(168,85,247,.55);}
+    .roadmap-item.done .rm-dot{background:var(--grad4);border-color:transparent;}
+    .rm-phase{font-size:.58rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);}
+    .rm-content h3{font-family:'Syne',sans-serif;font-size:.97rem;font-weight:700;margin-bottom:7px;}
+    .rm-content p{font-size:.82rem;color:var(--muted);line-height:1.65;}
+    .rm-tag{display:inline-block;margin-bottom:8px;}
+    @media(max-width:680px){
+      .roadmap::before{left:22px;transform:none;}
+      .roadmap-item{grid-template-columns:44px 1fr;}
+      .roadmap-item:nth-child(odd) .rm-content,.roadmap-item:nth-child(even) .rm-content{grid-column:2;text-align:left;padding:0 0 0 18px;}
+      .roadmap-item:nth-child(odd) .rm-empty,.roadmap-item:nth-child(even) .rm-empty{display:none;}
+      .rm-node{grid-column:1;}
+    }
+
+    /* ── VIDEO ── */
+    .video-wrap{border-radius:var(--r-xl);overflow:hidden;box-shadow:0 24px 72px rgba(0,0,0,.65);}
+    .video-wrap video{width:100%;display:block;}
+
+    /* ── OATH ── */
+    .oath-section{padding:100px 0;text-align:center;}
+    .oath-box{background:rgba(0,0,0,.26);border:1px solid var(--border);border-radius:var(--r-xl);padding:44px 40px;max-width:640px;margin:0 auto 36px;position:relative;overflow:hidden;}
+    .oath-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);}
+    .oath-box p{font-size:.97rem;line-height:2.2;text-align:center;color:rgba(240,240,255,.85);white-space:pre-line;}
+    .oath-name{font-weight:700;color:var(--cyan);}
+    .oath-sig{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:800;letter-spacing:.14em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    @media(max-width:768px){.oath-box{padding:28px 22px;}}
+
+    /* ── FAQ ── */
+    .faq-list{display:flex;flex-direction:column;gap:9px;max-width:720px;margin:0 auto;}
+    .faq-item{border-radius:var(--r-md);border:1px solid var(--border);overflow:hidden;}
+    .faq-q{width:100%;padding:17px 20px;background:var(--surface);display:flex;align-items:center;justify-content:space-between;gap:14px;font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;color:var(--text);cursor:pointer;border:none;text-align:left;transition:background .2s;}
+    .faq-q:hover{background:var(--surf2);}
+    .faq-arrow{font-size:.9rem;transition:transform .3s;flex-shrink:0;color:var(--purple);}
+    .faq-item.open .faq-arrow{transform:rotate(180deg);}
+    .faq-a{display:none;padding:0 20px 16px;font-size:.86rem;color:var(--muted);line-height:1.75;background:var(--surface);}
+    .faq-item.open .faq-a{display:block;animation:fadeUp .25s ease;}
+
+    /* ── FINAL CTA ── */
+    .final-cta{text-align:center;padding:110px 28px;background:linear-gradient(180deg,transparent,rgba(168,85,247,.05)50%,transparent);}
+    .final-cta p{font-size:.97rem;color:var(--muted);max-width:480px;margin:16px auto 38px;line-height:1.8;}
+    .cta-cluster{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;}
+  </style>
+</head>
+<body>
+
+<div class="bg-layer"><div class="bg-mesh"></div><div class="bg-grid"></div></div>
+<div class="particles" id="js-particles"></div>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar" id="js-navbar">
+  <a href="landing.html" class="nav-logo"><img src="cubyboo-logo.png" alt="Cubyboo"></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#trailer">Trailer</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://twitter.com/Cubyboo_NFT" class="nav-social" target="_blank" rel="noopener" aria-label="Twitter">𝕏</a>
+    <a href="#" class="nav-social" data-soon onclick="return false;" aria-label="Discord"><img src="discord-icon.png" alt="Discord"></a>
+    <a href="whitelist.html" class="nav-cta">🎟 Whitelist</a>
+  </div>
+  <div class="nav-burger" id="js-burger"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-mobile" id="js-mobile-menu">
+  <a href="#about">About</a>
+  <a href="#trailer">Trailer</a>
+  <a href="#roadmap">Roadmap</a>
+  <a href="#faq">FAQ</a>
+  <a href="whitelist.html" style="color:var(--purple);font-weight:700;">🎟 Join Whitelist</a>
+</div>
+
+<div class="wrapper">
+
+  <!-- ══ HERO ══ -->
+  <section class="hero" id="home">
+    <div class="hero__glow hero__glow--pink"></div>
+    <div class="hero__glow hero__glow--cyan"></div>
+    <div class="hero__glow hero__glow--purp"></div>
+
+    <div class="hero__mascot-wrap">
+      <div class="hero__ring hero__ring--1"></div>
+      <div class="hero__ring hero__ring--2"></div>
+      <div class="hero__ring hero__ring--3"></div>
+      <div class="hero__orbit">
+        <div class="hero__spark hero__spark--1"></div>
+        <div class="hero__spark hero__spark--2"></div>
+      </div>
+      <div class="hero__orbit hero__orbit2">
+        <div class="hero__spark hero__spark--3"></div>
+        <div class="hero__spark hero__spark--4"></div>
+      </div>
+      <!-- 📌 REPLACE: remplace l'emoji par <img src="cubyboo-hero.png" style="width:75%;height:75%;object-fit:contain;"> quand tu as l'image -->
+      <div class="hero__mascot" id="js-mascot">🐻</div>
+      <canvas class="hero__dust" id="js-dust"></canvas>
+    </div>
+
+    <div class="hero__tag">
+      <span class="eyebrow eyebrow--purple"><span class="eyebrow-dot"></span>Whitelist Now Open</span>
+    </div>
+    <h1 class="h-xl hero__title">Guardians<br>of <span class="grad-text">Color</span></h1>
+    <p class="hero__sub">2,222 unique Cubyboo NFTs on Abstract.<br>Each one guards something precious — a memory, a feeling, a cherished bond.<br><em>What we cherish exists.</em></p>
+    <div class="hero__ctas">
+      <a href="index.html" class="btn btn-primary btn-lg">⚔️ Take the Guardian's Oath</a>
+      <a href="whitelist.html" class="btn btn-secondary btn-lg">🎟 Join the Whitelist</a>
+    </div>
+    <div class="hero__stats container">
+      <div class="hero__stat"><div class="hero__stat-num">2,222</div><div class="hero__stat-label">Total Supply</div></div>
+      <div class="hero__stat"><div class="hero__stat-num">22</div><div class="hero__stat-label">Batches</div></div>
+      <div class="hero__stat"><div class="hero__stat-num">4</div><div class="hero__stat-label">Phases</div></div>
+      <div class="hero__stat"><div class="hero__stat-num">∞</div><div class="hero__stat-label">Things Cherished</div></div>
+    </div>
+    <div class="hero__scroll">Scroll to explore</div>
+  </section>
+
+  <!-- ══ ABOUT ══ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual reveal">
+          <div class="about-visual__inner">
+            <!-- 📌 REPLACE: <img src="cubyboo-lore.png" style="width:80%;height:80%;object-fit:contain;position:relative;z-index:1;"> -->
+            <div class="about-visual__placeholder">
+              <span>🌈</span>
+              Ton image Cubyboo<br>ici
+            </div>
+          </div>
+        </div>
+        <div class="about-text reveal rd-1">
+          <span class="eyebrow eyebrow--pink">The Lore</span>
+          <h2 class="h-lg">The World of<br><span class="grad-text">Cubyboo</span></h2>
+          <!-- 📌 REPLACE: remplace ces paragraphes par ton vrai texte lore -->
+          <p>Dans un royaume où les sentiments oubliés dérivent comme des étoiles perdues, les Cubyboo sont nés — de petits gardiens de couleurs, chacun chargé de préserver quelque chose de précieux qu'un cœur humain a un jour chéri.</p>
+          <p>Chaque Cubyboo porte un fragment d'émotion : un après-midi d'été, un premier regard, le rire d'une grand-mère. Sans un Gardien pour les voir, ces fragments s'effacent dans le vide.</p>
+          <div class="about-quote">
+            <p>« Je ne combats pas par la force, mais par ma présence. »</p>
+          </div>
+          <p>En devenant Gardien, tu prononces un serment sacré — voir, honorer, et ne jamais laisser ce que tu chéris disparaître. Ton attention est leur pouvoir.</p>
+          <a href="index.html" class="btn btn-primary" style="align-self:flex-start;margin-top:4px;">⚔️ Lire le Serment complet</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ TRAILER ══ -->
+  <section class="section" id="trailer">
+    <div class="container--md">
+      <div class="section-header reveal">
+        <span class="eyebrow eyebrow--cyan">Official Trailer</span>
+        <h2 class="h-lg" style="margin-top:16px;">🎬 The Secret <span class="grad-text2">Origin</span> of Cubyboo</h2>
+        <p>Watch the story unfold — how Cubyboo came to be, and why Guardians are needed now more than ever.</p>
+      </div>
+      <div class="video-wrap reveal rd-1">
+        <video controls preload="metadata" playsinline>
+          <source src="cubyboo-trailer.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ COLLECTION TRAITS ══ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow eyebrow--purple">The Collection</span>
+        <h2 class="h-lg" style="margin-top:16px;">Meet the <span class="grad-text">Cubyboo</span></h2>
+        <p>Chaque Cubyboo est une combinaison unique de traits sur six catégories, rendant chaque lien Gardien vraiment unique.</p>
+      </div>
+      <div class="traits-grid">
+        <div class="card trait-card reveal"><span class="trait-icon">🎨</span><div class="trait-name">Color Aura</div><div class="trait-count">12 variants</div><div class="trait-bar-wrap"><div class="trait-bar" style="width:85%"></div></div></div>
+        <div class="card trait-card reveal rd-1"><span class="trait-icon">👁️</span><div class="trait-name">Eyes</div><div class="trait-count">18 variants</div><div class="trait-bar-wrap"><div class="trait-bar" style="width:72%"></div></div></div>
+        <div class="card trait-card reveal rd-2"><span class="trait-icon">✨</span><div class="trait-name">Sparkle Type</div><div class="trait-count">9 variants</div><div class="trait-bar-wrap"><div class="trait-bar" style="width:60%"></div></div></div>
+        <div class="card trait-card reveal rd-3"><span class="trait-icon">🎀</span><div class="trait-name">Accessory</div><div class="trait-count">24 variants</div><div class="trait-bar-wrap"><div class="trait-bar" style="width:90%"></div></div></div>
+        <div class="card trait-card reveal rd-1"><span class="trait-icon">🌟</span><div class="trait-name">Background</div><div class="trait-count">15 variants</div><div class="trait-bar-wrap"><div class="trait-bar" style="width:66%"></div></div></div>
+        <div class="card trait-card reveal rd-2"><span class="trait-icon">💎</span><div class="trait-name">Rarity</div><div class="trait-count">5 tiers</div><div class="trait-bar-wrap"><div class="trait-bar" style="width:40%"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ ROADMAP ══ -->
+  <section class="section" id="roadmap">
+    <div class="container--md">
+      <div class="section-header reveal">
+        <span class="eyebrow eyebrow--pink">Roadmap</span>
+        <h2 class="h-lg" style="margin-top:16px;">The Guardian's <span class="grad-text">Journey</span></h2>
+        <p>Quatre phases pour construire un écosystème florissant où les Cubyboo et leurs Gardiens façonnent l'avenir ensemble.</p>
+      </div>
+      <div class="roadmap">
+        <div class="roadmap-items">
+          <div class="roadmap-item done reveal">
+            <div class="rm-content"><span class="pill pill--green rm-tag">Completed ✓</span><h3>Phase 1 — Genesis</h3><p>Concept, direction artistique, lancement du site, construction de la communauté sur Twitter. Le Serment du Gardien est introduit.</p></div>
+            <div class="rm-node"><div class="rm-dot">🌱</div><div class="rm-phase">Phase 1</div></div>
+            <div class="rm-empty"></div>
+          </div>
+          <div class="roadmap-item active reveal rd-1">
+            <div class="rm-empty"></div>
+            <div class="rm-node"><div class="rm-dot">🔥</div><div class="rm-phase">Phase 2</div></div>
+            <div class="rm-content"><span class="pill pill--orange rm-tag">In Progress</span><h3>Phase 2 — Whitelist</h3><p>Campagne Whitelist, lancement Discord, missions communautaires, rituel du Serment du Gardien. 200 spots réservés.</p></div>
+          </div>
+          <div class="roadmap-item reveal rd-2">
+            <div class="rm-content"><span class="pill pill--cyan rm-tag">Coming Soon</span><h3>Phase 3 — Mint</h3><p>Mint public sur Abstract. 2,222 Cubyboo uniques en 22 batches. Accès prioritaire pour les détenteurs Whitelist.</p></div>
+            <div class="rm-node"><div class="rm-dot">🚀</div><div class="rm-phase">Phase 3</div></div>
+            <div class="rm-empty"></div>
+          </div>
+          <div class="roadmap-item reveal rd-3">
+            <div class="rm-empty"></div>
+            <div class="rm-node"><div class="rm-dot">🌈</div><div class="rm-phase">Phase 4</div></div>
+            <div class="rm-content"><span class="pill pill--purple rm-tag">Future</span><h3>Phase 4 — Sanctuary</h3><p>Dashboard holders, système de rang Gardien, drops exclusifs, trésorerie communautaire et le DAO du Sanctuaire Prismatique.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ OATH TEASER ══ -->
+  <section class="oath-section">
+    <div class="container--sm">
+      <div class="reveal">
+        <span class="eyebrow eyebrow--purple" style="margin-bottom:20px;display:inline-flex;">Sacred Ritual</span>
+        <h2 class="h-lg" style="margin-bottom:34px;">The Guardian's <span class="grad-text">Oath</span></h2>
+      </div>
+      <div class="oath-box reveal rd-1">
+        <p>I, <span class="oath-name">Guardian</span>,
+acknowledge that what I cherish exists.
+
+I vow to protect the essence entrusted to my Cubyboo,
+To see it. To honor it.
+To never let it fade into oblivion.
+
+As long as I wear its image,
+As long as I speak of it,
+As long as I give it my attention,
+What it guards shall never disappear.
+
+I do not fight with force,
+but with presence.
+
+<span class="oath-sig">WHAT WE CHERISH EXISTS</span></p>
+      </div>
+      <div class="reveal rd-2">
+        <a href="index.html" class="btn btn-primary btn-lg">⚔️ Accept the Oath</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ FAQ ══ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow eyebrow--cyan">FAQ</span>
+        <h2 class="h-lg" style="margin-top:16px;">Everything you <span class="grad-text2">need to know</span></h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item"><button class="faq-q">Qu'est-ce que Cubyboo ? <span class="faq-arrow">▾</span></button><div class="faq-a">Cubyboo est une collection de 2,222 NFTs uniques sur la blockchain Abstract. Chaque Cubyboo est un gardien qui préserve quelque chose de précieux — un sentiment, un souvenir, un lien cher. Les détenteurs deviennent Gardiens dans un univers piloté par la communauté.</div></div>
+        <div class="faq-item"><button class="faq-q">Sur quelle blockchain ? <span class="faq-arrow">▾</span></button><div class="faq-a">Cubyboo est déployé sur Abstract, une blockchain next-gen construite pour l'adoption mainstream des NFTs. Abstract est conçu pour des expériences onchain rapides, accessibles et conviviales.</div></div>
+        <div class="faq-item"><button class="faq-q">Comment rejoindre la Whitelist ? <span class="faq-arrow">▾</span></button><div class="faq-a">Pour rejoindre la Whitelist : (1) Accepte le Serment du Gardien, (2) Suis @Cubyboo_NFT sur X, (3) Like et reposte le tweet épinglé, (4) Tague 3 amis pour un bonus de priorité, (5) Soumets ton adresse wallet. Toutes les actions sont vérifiées manuellement.</div></div>
+        <div class="faq-item"><button class="faq-q">Quel est le prix de mint ? <span class="faq-arrow">▾</span></button><div class="faq-a">Le prix de mint sera annoncé à l'approche du lancement. Suis @Cubyboo_NFT sur X et rejoins notre Discord pour être le premier informé. Les détenteurs Whitelist peuvent bénéficier d'un accès anticipé.</div></div>
+        <div class="faq-item"><button class="faq-q">Quelle est la date de mint ? <span class="faq-arrow">▾</span></button><div class="faq-a">La date exacte sera révélée en Phase 3. Nous sommes actuellement en Phase 2 (Whitelist). Les spots Whitelist sont limités à 200 pour cette session.</div></div>
+        <div class="faq-item"><button class="faq-q">Qu'est-ce que le Serment du Gardien ? <span class="faq-arrow">▾</span></button><div class="faq-a">Le Serment du Gardien est un rituel sacré que chaque futur détenteur doit accepter avant de rejoindre la whitelist. C'est un vœu symbolique de chérir ce que tu protèges — la philosophie centrale de Cubyboo. Ton attention est le pouvoir qui maintient ton Cubyboo en vie.</div></div>
+        <div class="faq-item"><button class="faq-q">Quels sont les avantages holder ? <span class="faq-arrow">▾</span></button><div class="faq-a">Les détenteurs Cubyboo bénéficient de : l'accès à la communauté Prismatic Sanctuary, un système de rang Gardien, des drops exclusifs futurs, un accès anticipé aux fonctionnalités Phase 4, la participation à la trésorerie communautaire.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FINAL CTA ══ -->
+  <div class="final-cta">
+    <div class="container--sm reveal">
+      <span class="eyebrow eyebrow--pink" style="margin-bottom:20px;display:inline-flex;"><span class="eyebrow-dot"></span>Spots limités — Agis maintenant</span>
+      <h2 class="h-lg">Prêt à devenir<br>un <span class="grad-text">Gardien ?</span></h2>
+      <p>200 spots Whitelist sont disponibles pour cette session. Accomplis tes missions, accepte le serment, et sécurise ta place dans l'univers Cubyboo.</p>
+      <div class="cta-cluster">
+        <a href="index.html" class="btn btn-primary btn-xl">⚔️ Accepter le Serment</a>
+        <a href="whitelist.html" class="btn btn-secondary btn-lg">🎟 Rejoindre la Whitelist</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="site-footer">
+    <div class="divider" style="margin-bottom:48px;"></div>
+    <div class="container">
+      <ul class="social-list">
+        <li><a href="https://twitter.com/Cubyboo_NFT" class="social-link" target="_blank" rel="noopener" aria-label="Twitter">𝕏</a></li>
+        <li><a href="#" class="social-link" data-soon onclick="return false;" aria-label="Discord"><img src="discord-icon.png" alt="Discord"></a></li>
+        <li><a href="#" class="social-link" data-soon onclick="return false;" aria-label="OpenSea"><img src="opensea-icon.png" alt="OpenSea"></a></li>
+      </ul>
+      <div><span class="chain-badge"><img src="abstract-icon.png" alt="Abstract" onerror="this.style.display='none'"> Abstract</span></div>
+      <p>© 2026 Cubyboo · What we cherish exists.</p>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+// Particles
+(function(){
+  const el=document.getElementById('js-particles');
+  const colors=['#FF5FBA','#00E5FF','#FFE040','#4DFFA0','#FF8C42','#A855F7','#3B82F6'];
+  for(let i=0;i<38;i++){
+    const p=document.createElement('div');p.className='particle';
+    const s=Math.random()*4+2;
+    p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*22}s;animation-duration:${Math.random()*14+10}s;`;
+    el.appendChild(p);
+  }
+})();
+
+// Magic dust canvas around mascot
+(function(){
+  const canvas=document.getElementById('js-dust');
+  const mascot=document.getElementById('js-mascot');
+  if(!canvas||!mascot)return;
+  const ctx=canvas.getContext('2d');
+  const colors=['#FF5FBA','#00E5FF','#FFE040','#4DFFA0','#A855F7'];
+  let particles=[];
+  function resize(){
+    const r=mascot.getBoundingClientRect();
+    const pad=80;
+    canvas.width=r.width+pad*2;canvas.height=r.height+pad*2;
+    canvas.style.left=-pad+'px';canvas.style.top=-pad+'px';
+  }
+  function spawn(){
+    const cx=canvas.width/2,cy=canvas.height/2;
+    const angle=Math.random()*Math.PI*2;
+    const radius=canvas.width*.35;
+    particles.push({
+      x:cx+Math.cos(angle)*radius,y:cy+Math.sin(angle)*radius,
+      vx:(Math.random()-.5)*1.2,vy:(Math.random()-.5)*1.2,
+      size:Math.random()*3+1,
+      color:colors[Math.floor(Math.random()*colors.length)],
+      life:1,decay:Math.random()*.018+.008
+    });
+  }
+  function frame(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    if(Math.random()<.35)spawn();
+    particles=particles.filter(p=>{
+      p.x+=p.vx;p.y+=p.vy;p.life-=p.decay;
+      ctx.globalAlpha=p.life*.7;
+      ctx.fillStyle=p.color;
+      ctx.shadowColor=p.color;ctx.shadowBlur=6;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();
+      return p.life>0;
+    });
+    ctx.globalAlpha=1;ctx.shadowBlur=0;
+    requestAnimationFrame(frame);
+  }
+  resize();window.addEventListener('resize',resize);
+  frame();
+})();
+
+// Navbar scroll
+const navbar=document.getElementById('js-navbar');
+window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+
+// Burger
+document.getElementById('js-burger').addEventListener('click',()=>document.getElementById('js-mobile-menu').classList.toggle('open'));
+document.querySelectorAll('.nav-mobile a').forEach(a=>a.addEventListener('click',()=>document.getElementById('js-mobile-menu').classList.remove('open')));
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Active nav link
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-130)cur=s.id;});
+  navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+},{passive:true});
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    const item=this.closest('.faq-item');
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen)item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

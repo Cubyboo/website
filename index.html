@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian's Oath — Cubyboo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .oath-page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(var(--nav-h)+60px) 28px 80px;text-align:center;}
+    .oath-glow{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;}
+    .oath-glow--pink{width:600px;height:400px;background:rgba(255,95,186,.08);top:30%;left:10%;transform:translateY(-50%);}
+    .oath-glow--purp{width:500px;height:400px;background:rgba(168,85,247,.08);top:60%;right:10%;transform:translateY(-50%);}
+    .oath-wrapper{max-width:680px;width:100%;margin:0 auto;}
+    .oath-logo{margin-bottom:40px;opacity:0;animation:fadeUp .7s ease .1s forwards;}
+    .oath-logo img{max-width:320px;width:80%;filter:drop-shadow(0 0 32px rgba(255,95,186,.35));animation:float 4s ease-in-out infinite;}
+    .oath-card{padding:52px 48px;text-align:center;opacity:0;animation:fadeUp .7s ease .3s forwards;}
+    .oath-card__head{margin-bottom:34px;}
+    .oath-card__head h1{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;margin:16px 0 10px;}
+    .oath-card__head p{font-size:.9rem;color:var(--muted);}
+    .oath-scroll{padding:30px 26px;background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:var(--r-lg);margin-bottom:24px;position:relative;overflow:hidden;}
+    .oath-scroll::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);}
+    .oath-text{font-size:.97rem;line-height:2.2;text-align:center;color:rgba(240,240,255,.87);white-space:pre-line;}
+    .oath-text__name{font-weight:700;color:var(--cyan);}
+    .oath-text__sig{display:inline-block;margin-top:8px;font-family:'Syne',sans-serif;font-size:.92rem;font-weight:800;letter-spacing:.14em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .oath-actions{display:flex;flex-direction:column;gap:14px;}
+    .oath-btns{display:flex;gap:12px;}
+    @media(max-width:600px){.oath-card{padding:32px 20px;}.oath-btns{flex-direction:column;}}
+  </style>
+</head>
+<body>
+<div class="bg-layer"><div class="bg-mesh"></div><div class="bg-grid"></div></div>
+<div class="particles" id="js-particles"></div>
+<div class="oath-glow oath-glow--pink"></div>
+<div class="oath-glow oath-glow--purp"></div>
+
+<nav class="navbar" id="js-navbar">
+  <a href="landing.html" class="nav-logo"><img src="cubyboo-logo.png" alt="Cubyboo"></a>
+  <ul class="nav-links">
+    <li><a href="landing.html#about">About</a></li>
+    <li><a href="landing.html#roadmap">Roadmap</a></li>
+    <li><a href="landing.html#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://twitter.com/Cubyboo_NFT" class="nav-social" target="_blank" rel="noopener">𝕏</a>
+    <a href="whitelist.html" class="nav-cta">🎟 Whitelist</a>
+  </div>
+  <div class="nav-burger" id="js-burger"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-mobile" id="js-mobile-menu">
+  <a href="landing.html">← Accueil</a>
+  <a href="whitelist.html" style="color:var(--purple);font-weight:700;">🎟 Join Whitelist</a>
+</div>
+
+<div class="wrapper">
+  <div class="oath-page">
+    <div class="oath-logo"><img src="cubyboo-logo.png" alt="CUBYBOO"></div>
+    <div class="oath-wrapper">
+      <div class="card oath-card">
+        <div class="oath-card__head">
+          <span class="eyebrow eyebrow--purple">Sacred Ritual</span>
+          <h1><span class="grad-text">The Guardian's</span><br>Oath</h1>
+          <p>Un engagement sacré pour protéger ce qui compte.</p>
+        </div>
+        <div class="oath-scroll">
+          <div class="oath-text">I, <span class="oath-text__name">Guardian</span>,
+acknowledge that what I cherish exists.
+
+I vow to protect the essence entrusted to my Cubyboo,
+To see it.
+To honor it.
+To never let it fade into oblivion.
+
+As long as I wear its image,
+As long as I speak of it,
+As long as I give it my attention,
+What it guards shall never disappear.
+
+I do not fight with force,
+but with presence.
+
+<span class="oath-text__sig">WHAT WE CHERISH EXISTS</span></div>
+        </div>
+        <div class="oath-actions">
+          <label class="check-row">
+            <input type="checkbox" id="js-check">
+            <span style="font-size:.88rem;color:var(--muted);line-height:1.5;cursor:pointer;">J'accepte solennellement ce serment et m'engage dans mon rôle de Gardien</span>
+          </label>
+          <div class="oath-btns">
+            <button class="btn btn-ghost" id="js-decline" style="flex:1;">Refuser</button>
+            <button class="btn btn-primary" id="js-accept" disabled style="flex:2;">⚔️ J'accepte ce Serment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){const el=document.getElementById('js-particles');const colors=['#FF5FBA','#00E5FF','#FFE040','#4DFFA0','#A855F7'];for(let i=0;i<28;i++){const p=document.createElement('div');p.className='particle';const s=Math.random()*4+2;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*20}s;animation-duration:${Math.random()*12+10}s;`;el.appendChild(p);}})();
+window.addEventListener('scroll',()=>document.getElementById('js-navbar').classList.toggle('scrolled',window.scrollY>60),{passive:true});
+document.getElementById('js-burger').addEventListener('click',()=>document.getElementById('js-mobile-menu').classList.toggle('open'));
+document.getElementById('js-check').addEventListener('change',function(){document.getElementById('js-accept').disabled=!this.checked;});
+document.getElementById('js-decline').addEventListener('click',()=>alert('⚠️ Tu dois accepter le Serment du Gardien pour accéder à la whitelist.'));
+document.getElementById('js-accept').addEventListener('click',()=>{localStorage.setItem('cubyboo_oath_signed','true');window.location.href='whitelist.html';});
+</script>
+</body>
+</html>
